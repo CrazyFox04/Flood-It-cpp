@@ -7,8 +7,7 @@ project(Flood-It)
 add_subdirectory(model)
 
 # Create the main executable
-add_executable(${PROJECT_NAME} main.cpp
-        ../include/Square.hpp)
+add_executable(${PROJECT_NAME} main.cpp)
 
 target_link_libraries(
         ${PROJECT_NAME} PRIVATE

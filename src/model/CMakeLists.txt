@@ -3,10 +3,12 @@
 # ===========================================
 project(Flood-It-model)
 
-# C++ sources files of the tetris_model
+# C++ sources files of the Flood-It-model
 set(SOURCES
-        Square.cpp
         Board.cpp
+        Game.cpp
+        Direction.cpp
+        Player.cpp
 )
 
 # Create the model library that public can use
