@@ -19,6 +19,16 @@ int Board::get_color(int x, int y) const {
     return board.at(x).at(y);
 }
 
-void Board::set_color(int x, int y) {
-    //todo
+void Board::play_at(const int x, const int y, const int color) {
+    if (x < 0 || x >= width || y < 0 || y >= height) {
+        throw std::out_of_range("Position is out of range");
+    }    board.at(x).at(y) = color;
+    mark.at(x).at(y) = true;
+}
+
+bool Board::is_marked(const int x, const int y) const {
+    if (x < 0 || x >= width || y < 0 || y >= height) {
+        throw std::out_of_range("Position is out of range");
+    }
+    return mark.at(x).at(y);
 }

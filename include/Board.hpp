@@ -14,11 +14,9 @@ class Board {
     int height;
     int width;
 
-    void set_color(int x, int y);
-
     int get_color(int x, int y) const;
 
-    void play_at(int x, int y) const;
+    void play_at(int x, int y, int color);
 
     bool is_marked(int x, int y) const;
 
