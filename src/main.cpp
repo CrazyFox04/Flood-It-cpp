@@ -1,6 +1,8 @@
 #include <iostream>
 
-int main() {
-    std::cout << "Hello, World!" << std::endl;
-    return 0;
+#include "GameGui.hpp"
+
+int main(int argc, char** argv) {
+    GameGui game = GameGui();
+    game.run(argc, argv);
 }
