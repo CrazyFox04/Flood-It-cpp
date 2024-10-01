@@ -4,14 +4,20 @@
 
 #ifndef FLOODITVIEW_HPP
 #define FLOODITVIEW_HPP
+#include <BoardBox.hpp>
+
 #include "GameController.hpp"
 #include "GameSettings.hpp"
 #include "FloodItView.hpp"
 #include <memory>
+#include <qboxlayout.h>
 #include <QWidget>
+
 class FloodItView : public QWidget {
     Q_OBJECT
-    bool wantToExit;
+    QHBoxLayout* mainLayout;
+    BoardBox* myBoardBox;
+    std::shared_ptr<GameController> controller;
 
     void endOfGame();
 

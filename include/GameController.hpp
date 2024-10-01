@@ -4,7 +4,7 @@
 
 #ifndef GAMECONTROLLER_HPP
 #define GAMECONTROLLER_HPP
-class GameController {
+class GameController{
 
 };
 #endif //GAMECONTROLLER_HPP

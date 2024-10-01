@@ -9,6 +9,8 @@ set(SOURCES
         FloodItConfiguration.cpp
         FloodItView.cpp
         FloodItGameOver.cpp
+        BoardBox.cpp
+        BlockView.cpp
 )
 
 # Find required Qt6 components

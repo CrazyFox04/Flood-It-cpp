@@ -9,16 +9,28 @@
 #include "FloodItGameOver.hpp"
 #include "GameSettings.hpp"
 #include <memory>
+#include <QApplication>
+#include <QLabel>
+#include <QPushButton>
 #include <QWidget>
+#include <QtWidgets/qboxlayout.h>
 
 
 class FloodItGameOver : public QWidget {
     Q_OBJECT
-    bool wantToExit;
+    QVBoxLayout* mainLayout;
+    QHBoxLayout* buttonLayout;
+    QLabel* gameOverLabel;
+    QLabel* detailsLabel;
+    QPushButton* restartButton;
+    QPushButton* exitButton;
 
-    void restartGame();
+private:
+    void configureWindow();
 
-    void quitGame();
+    void createItems();
+
+    void updateItems();
 
 public:
     FloodItGameOver(std::shared_ptr<GameController> game);
@@ -26,6 +38,13 @@ public:
     virtual ~FloodItGameOver() = default;
 
     int start(QApplication* myQtApp);
+
+    void restartGame();
+
+    void quitGame();
+
+protected:
+    void closeEvent(QCloseEvent* event) override;
 
 signals:
     void exitGame();

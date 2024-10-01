@@ -4,11 +4,13 @@
 
 #ifndef GAME_HPP
 #define GAME_HPP
+#include <GameController.hpp>
+
 #include "Board.hpp"
 #include "Player.hpp"
 #include "GameSettings.hpp"
 
-class Game {
+class Game : public GameController {
     Board board;
     GameSettings settings;
     Player player;

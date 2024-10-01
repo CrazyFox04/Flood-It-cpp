@@ -3,9 +3,18 @@
 //
 #include "FloodItView.hpp"
 
-FloodItView::FloodItView(std::shared_ptr<GameController> game): wantToExit() {
-}
+#include <QApplication>
 
+FloodItView::FloodItView(std::shared_ptr<GameController> game) : mainLayout(new QHBoxLayout(this)),
+                                                                 myBoardBox(new BoardBox(game, this)), controller(game) {
+    mainLayout->addWidget(myBoardBox);
+    setLayout(mainLayout);
+    myBoardBox->setFocus();
+}
+int FloodItView::start (QApplication *app) {
+    show();
+    return app->exec();
+}
 void FloodItView::closeEvent(QCloseEvent* event) {
     endOfGame();
 }

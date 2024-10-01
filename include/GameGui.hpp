@@ -7,6 +7,7 @@
 
 #include <GameController.hpp>
 #include <memory>
+#include <Player.hpp>
 
 #include "GameSettings.hpp"
 
@@ -17,6 +18,7 @@ class FloodItGameOver;
 class GameGui {
     bool wantToExit;
     GameSettings settings;
+    Player player;
     std::shared_ptr<GameController> controller;
     FloodItConfiguration* flood_it_configuration;
     FloodItView* flood_it_view;
