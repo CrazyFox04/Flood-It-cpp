@@ -80,6 +80,9 @@ void FloodItConfiguration::closeEvent(QCloseEvent* event) {
 }
 
 void FloodItConfiguration::closeWidget() {
+    settings_->board_height = boardHeightLineEdit->text().toInt();
+    settings_->board_width = boardWidthLineEdit->text().toInt();
+    settings_->number_color = numberOfColorLineEdit->text().toInt();
     wantToExit = false;
     close();
     deleteLater();

@@ -8,12 +8,13 @@
 
 #include <Game.hpp>
 #include <iostream>
+#include <memory>
 
 #include "FloodItConfiguration.hpp"
 #include "FloodItView.hpp"
 #include "FloodItGameOver.hpp"
 
-GameGui::GameGui() : wantToExit(false), settings() {
+GameGui::GameGui() : wantToExit(false), settings(), controller(std::make_shared<Game>()) {
 }
 
 void GameGui::run(int argc, char** argv) {

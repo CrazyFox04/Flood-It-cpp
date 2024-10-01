@@ -5,12 +5,20 @@
 
 #include <iostream>
 #include <ostream>
+#include <random>
 
 Board::Board(int height, int width, int number_color) : board(height, std::vector<int>(width)),
                                                         mark(height, std::vector<bool>(width)),
                                                         height(height),
                                                         width(width) {
-    // todo : add generate board based on color number
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> dis(1, number_color);
+    for (int i = 0; i < height; ++i) {
+        for (int j = 0; j < width; ++j) {
+            board[i][j] = dis(gen);
+        }
+    }
 }
 
 int Board::get_color(int x, int y) const {
@@ -32,3 +40,12 @@ bool Board::is_marked(const int x, const int y) const {
     }
     return mark.at(x).at(y);
 }
+
+int Board::getHeight() const {
+    return height;
+}
+
+int Board::getWidth() const {
+    return width;
+}
+

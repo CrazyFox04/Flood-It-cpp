@@ -4,7 +4,14 @@
 
 #ifndef GAMECONTROLLER_HPP
 #define GAMECONTROLLER_HPP
-class GameController{
+#include <Board.hpp>
 
+class GameController {
+public:
+    virtual ~GameController() = default;
+
+    virtual const Board& getBoard() const = 0;
+
+    virtual const int getMaxColor() const = 0;
 };
 #endif //GAMECONTROLLER_HPP

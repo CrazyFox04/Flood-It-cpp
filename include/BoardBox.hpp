@@ -17,6 +17,14 @@ class BoardBox : public QWidget {
     QGridLayout* grid;
     QList<QList<BlockView *>> blocks;
 
+    void drawBorder(QPainter&painter);
+
+    void updateBlocks();
+
+    void animateChangedBlocks();
+
+    void createBlocks();
+
 public:
     explicit BoardBox(std::shared_ptr<GameController> controller, QWidget* parent = nullptr);
 
@@ -27,12 +35,5 @@ protected:
     void paintEvent(QPaintEvent* event) override;
 
     void mousePressEvent(QMouseEvent* event) override;
-
-private:
-    void drawBorder(QPainter&painter);
-
-    void updateBlocks();
-
-    void animateChangedBlocks();
 };
 #endif //BOARDBOX_HPP

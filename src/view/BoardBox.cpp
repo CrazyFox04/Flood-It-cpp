@@ -6,11 +6,12 @@
 #include <QPainter>
 
 BoardBox::BoardBox(std::shared_ptr<GameController> controller, QWidget* parent) : QWidget(parent),
-                                                                                  controller(controller), grid() {
+                                                                                  controller(controller), grid(new QGridLayout(this)) {
     connect(dynamic_cast<const QObject *>(parent), SIGNAL(updateQt()), this, SLOT(updateQt()));
-    grid = new QGridLayout(this);
     grid->setContentsMargins(0, 0, 0, 0);
+    grid->setSpacing(0);
     setLayout(grid);
+    createBlocks();
     updateBlocks();
 }
 
@@ -24,10 +25,22 @@ void BoardBox::paintEvent(QPaintEvent* event) {
     }
 }
 
+void BoardBox::createBlocks() {
+    for (int i = 0; i < controller->getBoard().getHeight(); ++i) {
+        QList<BlockView*> list;
+        for (int j = 0; j < controller->getBoard().getWidth(); ++j) {
+            const auto blockView = new BlockView(controller, controller->getBoard().get_color(i,j), this);
+            list.append(blockView);
+            grid->addWidget(blockView, i, j);
+        }
+        blocks.append(list);
+    }
+}
+
 void BoardBox::updateBlocks() {
-    for (auto& block_views : blocks) {
-        for (auto& block_view : block_views) {
-            block_view->updateQt(0); // todo : add func to get int at this pos -> maybe use for i instead of foreach
+    for (int i = 0; i < blocks.size(); ++i) {
+        for (int j = 0; j < blocks[0].size(); ++j) {
+            blocks[i][j]->updateQt(controller->getBoard().get_color(i,j));
         }
     }
 }

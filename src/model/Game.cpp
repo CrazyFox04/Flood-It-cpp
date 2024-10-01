@@ -43,5 +43,13 @@ void Game::play_at(int x, int y) {
     // todo : for each with direction
 }
 
+const Board& Game::getBoard() const {
+    return board;
+}
+
+const int Game::getMaxColor() const {
+    return settings.number_color;
+}
+
 
 

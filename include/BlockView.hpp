@@ -14,7 +14,7 @@ class BlockView : public QWidget {
     Q_OBJECT
     //Q_PROPERTY(QColor color READ getColor write setColor)
     std::shared_ptr<GameController> controller;
-    QColor color;
+    int color;
 
     QLinearGradient getGradient(int x, int y) const;
 

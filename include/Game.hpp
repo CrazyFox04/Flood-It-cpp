@@ -25,9 +25,13 @@ public :
 
     Game(GameSettings settings, Player player);
 
+    const Board& getBoard() const override;
+
     void play_at(int x, int y);
 
     bool isFinished() const;
+
+    const int getMaxColor() const override;
 };
 
 #endif //GAME_HPP
