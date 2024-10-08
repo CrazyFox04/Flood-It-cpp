@@ -58,8 +58,8 @@ void FloodItConfiguration::createLineEdits() {
 }
 
 void FloodItConfiguration::addFields() {
-    form_layout_->addRow(boardWidthLabel, boardWidthLineEdit);
     form_layout_->addRow(boardHeightLabel, boardHeightLineEdit);
+    form_layout_->addRow(boardWidthLabel, boardWidthLineEdit);
     form_layout_->addRow(numberOfColorLabel, numberOfColorLineEdit);
 
     QList<QWidget *> widgets = {boardHeightLineEdit, boardWidthLineEdit, numberOfColorLineEdit};
