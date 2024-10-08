@@ -2,6 +2,8 @@
 // Created by Enzo Renard on 20/09/2024.
 //
 #include "Game.hpp"
+#include "Observable.hpp"
+#include "Observer.hpp"
 
 #include <Direction.hpp>
 #include <iostream>
@@ -12,7 +14,7 @@
 
 Game::Game(GameSettings settings, Player player): board(settings.board_height, settings.board_width,
                                                         settings.number_color),
-                                                  settings(settings), player(player) {
+                                                  settings(settings), player(player), observers() {
     board.markAt(0, 0);
 }
 
@@ -60,4 +62,18 @@ const Board& Game::getBoard() const {
 
 const int Game::getMaxColor() const {
     return settings.number_color;
+}
+
+void Game::notifyObservers() {
+    for (auto observer : observers) {
+        observer->update();
+    }
+}
+
+void Game::addObserver(Observer* observer) {
+    observers.push_back(observer);
+}
+
+void Game::removeObserver(Observer* observer) {
+    observers.erase(std::remove(observers.begin(), observers.end(), observer), observers.end());
 }

@@ -21,8 +21,15 @@ void FloodItView::closeEvent(QCloseEvent* event) {
 
 void FloodItView::endOfGame() {
     close();
+    controller->removeObserver(this);
     deleteLater();
 }
 
+void FloodItView::update() {
+    emit updateQt();
+    if (controller->isFinished()) {
+        endOfGame();
+    }
+}
 
 #include "moc_FloodItView.cpp"

@@ -5,8 +5,9 @@
 #ifndef GAMECONTROLLER_HPP
 #define GAMECONTROLLER_HPP
 #include <Board.hpp>
+#include "Observable.hpp"
 
-class GameController {
+class GameController : public Observable {
 public:
     virtual ~GameController() = default;
 
@@ -15,5 +16,11 @@ public:
     virtual const int getMaxColor() const = 0;
 
     virtual void play_at(int x, int y) = 0;
+
+    virtual void addObserver(Observer* observer) = 0;
+
+    virtual void removeObserver(Observer* observer) = 0;
+
+    virtual bool isFinished() const = 0;
 };
 #endif //GAMECONTROLLER_HPP

@@ -38,6 +38,7 @@ void GameGui::configureEndOfConfiguration() {
             controller = std::make_shared<Game>(settings, player);
             // todo : add model start here
             flood_it_view = new FloodItView(controller);
+            controller->addObserver(flood_it_view);
             flood_it_view->show();
             configureEndOfView();
         }

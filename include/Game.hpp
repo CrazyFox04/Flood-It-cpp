@@ -14,6 +14,7 @@ class Game : public GameController {
     Board board;
     GameSettings settings;
     Player player;
+    std::vector<Observer*> observers;
 
 public :
     static constexpr int DEFAULT_BOARD_WIDTH = 10;
@@ -32,6 +33,12 @@ public :
     bool isFinished() const;
 
     const int getMaxColor() const override;
+
+    void addObserver(Observer* observer) override;
+
+    void removeObserver(Observer* observer) override;
+
+    void notifyObservers() override;
 };
 
 #endif //GAME_HPP

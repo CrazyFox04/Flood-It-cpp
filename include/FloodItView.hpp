@@ -12,8 +12,9 @@
 #include <memory>
 #include <qboxlayout.h>
 #include <QWidget>
+#include "Observer.hpp"
 
-class FloodItView : public QWidget {
+class FloodItView : public QWidget, public Observer {
     Q_OBJECT
     QHBoxLayout* mainLayout;
     BoardBox* myBoardBox;
@@ -28,10 +29,12 @@ public:
 
     int start(QApplication* myQtApp);
 
+    void update() override;
+
 protected:
     void closeEvent(QCloseEvent* event) override;
 
 signals:
-    void exitGame();
+    void updateQt();
 };
 #endif //FLOODITVIEW_HPP
