@@ -17,6 +17,7 @@ Board::Board(int height, int width, int number_color) : board(height, std::vecto
     for (int i = 0; i < height; ++i) {
         for (int j = 0; j < width; ++j) {
             board[i][j] = dis(gen);
+            mark[i][j] = false;
         }
     }
 }
@@ -36,7 +37,7 @@ void Board::play_at(const int x, const int y, const int color) {
 
 bool Board::is_marked(const int x, const int y) const {
     if (x < 0 || x >= width || y < 0 || y >= height) {
-        throw std::out_of_range("Position is out of range");
+        return false;
     }
     return mark.at(x).at(y);
 }
@@ -49,3 +50,6 @@ int Board::getWidth() const {
     return width;
 }
 
+void Board::markAt(int x, int y) {
+    mark.at(x).at(y) = true;
+}

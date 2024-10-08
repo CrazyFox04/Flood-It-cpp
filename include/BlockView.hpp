@@ -15,11 +15,13 @@ class BlockView : public QWidget {
     //Q_PROPERTY(QColor color READ getColor write setColor)
     std::shared_ptr<GameController> controller;
     int color;
+    int x;
+    int y;
 
     QLinearGradient getGradient(int x, int y) const;
 
 public:
-    BlockView(std::shared_ptr<GameController> controller, int color, QWidget* parent = nullptr);
+    BlockView(std::shared_ptr<GameController> controller, int color, int x, int y, QWidget* parent = nullptr);
 
     void paintEvent(QPaintEvent* event) override;
 
@@ -31,5 +33,8 @@ public:
     void makeItBlink(int blinkTime);
 
     QColor getColorFromNumber(int color);
+
+protected:
+    void mousePressEvent(QMouseEvent* event) override;
 };
 #endif //BLOCKVIEW_HPP

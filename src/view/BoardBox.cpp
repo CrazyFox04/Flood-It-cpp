@@ -29,7 +29,7 @@ void BoardBox::createBlocks() {
     for (int i = 0; i < controller->getBoard().getHeight(); ++i) {
         QList<BlockView*> list;
         for (int j = 0; j < controller->getBoard().getWidth(); ++j) {
-            const auto blockView = new BlockView(controller, controller->getBoard().get_color(i,j), this);
+            const auto blockView = new BlockView(controller, controller->getBoard().get_color(i,j), i, j, this);
             list.append(blockView);
             grid->addWidget(blockView, i, j);
         }
@@ -43,10 +43,6 @@ void BoardBox::updateBlocks() {
             blocks[i][j]->updateQt(controller->getBoard().get_color(i,j));
         }
     }
-}
-
-void BoardBox::mousePressEvent(QMouseEvent* event) {
-
 }
 
 void BoardBox::updateQt() {

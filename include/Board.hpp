@@ -18,6 +18,8 @@ class Board {
 
     bool is_marked(int x, int y) const;
 
+    void markAt(int x, int y);
+
 public:
     Board(int height, int width, int number_color);
 
