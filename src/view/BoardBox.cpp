@@ -7,7 +7,7 @@
 
 BoardBox::BoardBox(std::shared_ptr<GameController> controller, QWidget* parent) : QWidget(parent),
                                                                                   controller(controller), grid(new QGridLayout(this)) {
-    connect(dynamic_cast<const QObject *>(parent), SIGNAL(updateQt()), this, SLOT(updateQt()));
+    connect(parent, SIGNAL(updateQt()), this, SLOT(updateQt()));
     grid->setContentsMargins(0, 0, 0, 0);
     grid->setSpacing(0);
     setLayout(grid);

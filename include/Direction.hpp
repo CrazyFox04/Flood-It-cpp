@@ -14,5 +14,6 @@ struct Direction {
     static const Direction2D DOWN;
     static const Direction2D LEFT;
     static const Direction2D RIGHT;
+    static const Direction2D directions[4];
 };
 #endif //DIRECTION_HPP

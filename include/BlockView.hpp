@@ -28,6 +28,7 @@ public:
     void updateQt(int color);
 
     void setColor(QColor color); // todo : maybe private
+
     QColor getColor() const;
 
     void makeItBlink(int blinkTime);

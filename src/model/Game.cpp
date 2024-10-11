@@ -15,7 +15,20 @@
 Game::Game(GameSettings settings, Player player): board(settings.board_height, settings.board_width,
                                                         settings.number_color),
                                                   settings(settings), player(player), observers() {
-    board.markAt(0, 0);
+    recursive_mark(0, 0);
+}
+
+void Game::recursive_mark(int x, int y) {
+    if (board.get_color(0, 0) == board.get_color(x, y)) {
+        board.markAt(x, y);
+        for (auto direction : Direction::directions) {
+            int pos_x = x + direction.first;
+            int pos_y = y + direction.second;
+            if (pos_x >= 0 && pos_y >= 0 && pos_x < settings.board_width && pos_y < settings.board_height && !board.is_marked(pos_x, pos_y)) {
+                recursive_mark(pos_x, pos_y);
+            }
+        }
+    }
 }
 
 Game::Game(Player player) : Game(
@@ -46,14 +59,24 @@ void Game::play_at(int x, int y) {
             "You can't play at " + std::to_string(x) + " " + std::to_string(y) + " : already marked pos");
     }
 
-    if (!board.is_marked(x - 1, y) && !board.is_marked(x + 1, y) && !board.is_marked(x, y - 1) && !board.
-        is_marked(x, y + 1)) {
-        throw std::invalid_argument(
-            "You can't play at " + std::to_string(x) + " " + std::to_string(y) + " : not near a marked pos");
+    auto color = board.get_color(x, y);
+    for (int i = 0; i < settings.board_height; ++i) {
+        for (int j = 0; j < settings.board_width; ++j) {
+            if (board.is_marked(i, j)) {
+                board.play_at(i, j, color);
+            }
+            else {
+                if (board.get_color(i, j) == color) {
+                    board.markAt(i, j);
+                }
+            }
+        }
     }
+    notifyObservers();
+}
 
-    std::cout << "successfully played at " << x << ", " << y << std::endl;
-    // todo : for each with direction
+bool Game::can_play_at(int x, int y) const {
+    return !board.is_marked(x, y);
 }
 
 const Board& Game::getBoard() const {
@@ -65,7 +88,7 @@ const int Game::getMaxColor() const {
 }
 
 void Game::notifyObservers() {
-    for (auto observer : observers) {
+    for (auto observer: observers) {
         observer->update();
     }
 }

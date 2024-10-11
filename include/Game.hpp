@@ -16,6 +16,8 @@ class Game : public GameController {
     Player player;
     std::vector<Observer*> observers;
 
+    void recursive_mark(int x, int y);
+
 public :
     static constexpr int DEFAULT_BOARD_WIDTH = 10;
     static constexpr int DEFAULT_BOARD_HEIGHT = 10;
@@ -29,6 +31,8 @@ public :
     const Board& getBoard() const override;
 
     void play_at(int x, int y);
+
+    bool can_play_at(int x, int y) const;
 
     bool isFinished() const;
 

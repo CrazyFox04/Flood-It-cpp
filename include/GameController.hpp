@@ -22,5 +22,7 @@ public:
     virtual void removeObserver(Observer* observer) = 0;
 
     virtual bool isFinished() const = 0;
+
+    virtual bool can_play_at(int x, int y) const = 0;
 };
 #endif //GAMECONTROLLER_HPP
