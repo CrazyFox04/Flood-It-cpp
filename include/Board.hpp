@@ -29,6 +29,10 @@ public:
 
     int get_color(int x, int y) const;
 
+    void change_color(int color);
+
+    void reset_mark();
+
     friend class Game;
 };
 #endif //BOARD_HPP

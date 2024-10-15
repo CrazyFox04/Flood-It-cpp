@@ -60,18 +60,9 @@ void Game::play_at(int x, int y) {
     }
 
     auto color = board.get_color(x, y);
-    for (int i = 0; i < settings.board_height; ++i) {
-        for (int j = 0; j < settings.board_width; ++j) {
-            if (board.is_marked(i, j)) {
-                board.play_at(i, j, color);
-            }
-            else {
-                if (board.get_color(i, j) == color) {
-                    board.markAt(i, j);
-                }
-            }
-        }
-    }
+    board.change_color(color);
+    board.reset_mark();
+    recursive_mark(0,0);
     notifyObservers();
 }
 

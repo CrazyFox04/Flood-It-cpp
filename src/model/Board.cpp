@@ -57,3 +57,25 @@ void Board::markAt(int x, int y) {
     }
     mark.at(x).at(y) = true;
 }
+
+void Board::change_color(int color) {
+    for (int i = 0; i < width; ++i) {
+        for (int j = 0; j < height; ++j) {
+            if (is_marked(i, j)) {
+                board[i][j] = color;
+            }
+        }
+    }
+}
+
+void Board::reset_mark() {
+    // for (auto markList : mark) {
+    //     std::fill(markList.begin(), markList.end(), false);
+    // }
+    for (auto bit_references : mark) {
+        for (auto bit_reference : bit_references) {
+            bit_reference = false;
+        }
+    }
+}
+
