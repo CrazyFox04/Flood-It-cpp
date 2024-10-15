@@ -14,7 +14,7 @@
 
 Game::Game(GameSettings settings, Player player): board(settings.board_height, settings.board_width,
                                                         settings.number_color),
-                                                  settings(settings), player(player), observers() {
+                                                  settings(settings), status(), observers() {
     recursive_mark(0, 0);
 }
 

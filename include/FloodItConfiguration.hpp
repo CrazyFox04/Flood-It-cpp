@@ -24,9 +24,11 @@ class FloodItConfiguration : public QWidget {
     QLabel* boardHeightLabel;
     QLabel* boardWidthLabel;
     QLabel* numberOfColorLabel;
+    QLabel* playerNameLabel;
     QLineEdit* boardHeightLineEdit;
     QLineEdit* boardWidthLineEdit;
     QLineEdit* numberOfColorLineEdit;
+    QLineEdit* playerNameLineEdit;
     QPushButton* startButton_;
     GameSettings* settings_;
 

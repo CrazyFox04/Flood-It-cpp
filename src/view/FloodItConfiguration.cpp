@@ -10,12 +10,14 @@ FloodItConfiguration::FloodItConfiguration(GameSettings* settings): wantToExit(t
                                                                     boardHeightLabel(new QLabel("Board Height")),
                                                                     boardWidthLabel(new QLabel("Board Width")),
                                                                     numberOfColorLabel(new QLabel("Number of colors")),
+                                                                    playerNameLabel(new QLabel("Player Name")),
                                                                     boardHeightLineEdit(
                                                                         new QLineEdit(QString::number(0), this)),
                                                                     boardWidthLineEdit(
                                                                         new QLineEdit(QString::number(0), this)),
                                                                     numberOfColorLineEdit(
                                                                         new QLineEdit(QString::number(0), this)),
+                                                                    playerNameLineEdit(new QLineEdit(this)),
                                                                     startButton_(new QPushButton("Start", this)),
                                                                     settings_(settings) {
     setWindowTitle("Flood-It configuration");
@@ -54,16 +56,17 @@ void FloodItConfiguration::createButtons() {
 }
 
 void FloodItConfiguration::createLineEdits() {
-
+    playerNameLineEdit->setPlaceholderText("PlayerOne");
 }
 
 void FloodItConfiguration::addFields() {
     form_layout_->addRow(boardHeightLabel, boardHeightLineEdit);
     form_layout_->addRow(boardWidthLabel, boardWidthLineEdit);
     form_layout_->addRow(numberOfColorLabel, numberOfColorLineEdit);
+    form_layout_->addRow(playerNameLabel, playerNameLineEdit);
 
-    QList<QWidget *> widgets = {boardHeightLineEdit, boardWidthLineEdit, numberOfColorLineEdit};
-    for (auto widget : widgets) {
+    QList<QWidget *> widgets = {boardHeightLineEdit, boardWidthLineEdit, numberOfColorLineEdit, playerNameLineEdit};
+    for (auto widget: widgets) {
         widget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
         widget->setMinimumWidth(300);
     }
@@ -83,6 +86,7 @@ void FloodItConfiguration::closeWidget() {
     settings_->board_height = boardHeightLineEdit->text().toInt();
     settings_->board_width = boardWidthLineEdit->text().toInt();
     settings_->number_color = numberOfColorLineEdit->text().toInt();
+    settings_->player_name = playerNameLineEdit->text().toStdString();
     wantToExit = false;
     close();
     deleteLater();
