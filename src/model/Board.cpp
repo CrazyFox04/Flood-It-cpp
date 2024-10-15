@@ -23,13 +23,13 @@ Board::Board(int height, int width, int number_color) : board(height, std::vecto
 }
 
 int Board::get_color(int x, int y) const {
-    if (x < 0 || x >= width || y < 0 || y >= height)
+    if (x < 0 || x >= height || y < 0 || y >= width)
         throw std::out_of_range("Position is out of range");
     return board.at(x).at(y);
 }
 
 void Board::play_at(const int x, const int y, const int color) {
-    if (x < 0 || x >= width || y < 0 || y >= height) {
+    if (x < 0 || x >= height || y < 0 || y >= width) {
         throw std::out_of_range("Position is out of range");
     }
     board.at(x).at(y) = color;
@@ -37,7 +37,7 @@ void Board::play_at(const int x, const int y, const int color) {
 }
 
 bool Board::is_marked(const int x, const int y) const {
-    if (x < 0 || x >= width || y < 0 || y >= height) {
+    if (x < 0 || x >= height || y < 0 || y >= width) {
         return false;
     }
     return mark.at(x).at(y);
@@ -59,8 +59,8 @@ void Board::markAt(int x, int y) {
 }
 
 void Board::change_color(int color) {
-    for (int i = 0; i < width; ++i) {
-        for (int j = 0; j < height; ++j) {
+    for (int i = 0; i < height; ++i) {
+        for (int j = 0; j < width; ++j) {
             if (is_marked(i, j)) {
                 board[i][j] = color;
             }

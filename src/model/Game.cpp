@@ -24,7 +24,7 @@ void Game::recursive_mark(int x, int y) {
         for (auto direction : Direction::directions) {
             int pos_x = x + direction.first;
             int pos_y = y + direction.second;
-            if (pos_x >= 0 && pos_y >= 0 && pos_x < settings.board_width && pos_y < settings.board_height && !board.is_marked(pos_x, pos_y)) {
+            if (pos_x >= 0 && pos_y >= 0 && pos_x < settings.board_height && pos_y < settings.board_width && !board.is_marked(pos_x, pos_y)) {
                 recursive_mark(pos_x, pos_y);
             }
         }
