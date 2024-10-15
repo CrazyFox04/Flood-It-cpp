@@ -14,7 +14,7 @@ class Game : public GameController {
     Board board;
     GameSettings settings;
     GameStatus status;
-    std::vector<Observer*> observers;
+    std::vector<Observer *> observers;
 
     void recursive_mark(int x, int y);
 
@@ -43,6 +43,8 @@ public :
     void removeObserver(Observer* observer) override;
 
     void notifyObservers() override;
+
+    int get_play_count() const;
 };
 
 #endif //GAME_HPP

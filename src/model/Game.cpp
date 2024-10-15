@@ -21,10 +21,11 @@ Game::Game(GameSettings settings, Player player): board(settings.board_height, s
 void Game::recursive_mark(int x, int y) {
     if (board.get_color(0, 0) == board.get_color(x, y)) {
         board.markAt(x, y);
-        for (auto direction : Direction::directions) {
+        for (auto direction: Direction::directions) {
             int pos_x = x + direction.first;
             int pos_y = y + direction.second;
-            if (pos_x >= 0 && pos_y >= 0 && pos_x < settings.board_height && pos_y < settings.board_width && !board.is_marked(pos_x, pos_y)) {
+            if (pos_x >= 0 && pos_y >= 0 && pos_x < settings.board_height && pos_y < settings.board_width && !board.
+                is_marked(pos_x, pos_y)) {
                 recursive_mark(pos_x, pos_y);
             }
         }
@@ -62,7 +63,8 @@ void Game::play_at(int x, int y) {
     auto color = board.get_color(x, y);
     board.change_color(color);
     board.reset_mark();
-    recursive_mark(0,0);
+    recursive_mark(0, 0);
+    ++status.play_count;
     notifyObservers();
 }
 
@@ -90,4 +92,8 @@ void Game::addObserver(Observer* observer) {
 
 void Game::removeObserver(Observer* observer) {
     observers.erase(std::remove(observers.begin(), observers.end(), observer), observers.end());
+}
+
+int Game::get_play_count() const {
+    return status.play_count;
 }

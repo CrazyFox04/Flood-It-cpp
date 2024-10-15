@@ -5,7 +5,8 @@
 
 #include <QCloseEvent>
 
-FloodItGameOver::FloodItGameOver(std::shared_ptr<GameController> game): mainLayout(new QVBoxLayout(this)),
+FloodItGameOver::FloodItGameOver(std::shared_ptr<GameController> game): controller_(game),
+                                                                        mainLayout(new QVBoxLayout(this)),
                                                                         buttonLayout(new QHBoxLayout()),
                                                                         gameOverLabel(new QLabel(this)),
                                                                         detailsLabel(new QLabel(this)),
@@ -41,11 +42,11 @@ void FloodItGameOver::createItems() {
 }
 
 void FloodItGameOver::updateItems() {
-    gameOverLabel->setText("Game Over");
+    gameOverLabel->setText("Game is finished !");
+    detailsLabel->setText("You've finished the game in " + QString::number(controller_->get_play_count()) + " moves !");
 }
 
 void FloodItGameOver::restartGame() {
-    // todo : add model game restart
     close();
     deleteLater();
 }

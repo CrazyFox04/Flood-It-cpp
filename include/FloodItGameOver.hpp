@@ -18,6 +18,7 @@
 
 class FloodItGameOver : public QWidget {
     Q_OBJECT
+    std::shared_ptr<GameController> controller_;
     QVBoxLayout* mainLayout;
     QHBoxLayout* buttonLayout;
     QLabel* gameOverLabel;

@@ -24,5 +24,7 @@ public:
     virtual bool isFinished() const = 0;
 
     virtual bool can_play_at(int x, int y) const = 0;
+
+    virtual int get_play_count() const = 0;
 };
 #endif //GAMECONTROLLER_HPP
