@@ -69,13 +69,8 @@ void Board::change_color(int color) {
 }
 
 void Board::reset_mark() {
-    // for (auto markList : mark) {
-    //     std::fill(markList.begin(), markList.end(), false);
-    // }
-    for (auto bit_references : mark) {
-        for (auto bit_reference : bit_references) {
-            bit_reference = false;
-        }
+     for (auto& markList : mark) {
+         std::fill(markList.begin(), markList.end(), false);
     }
 }
 
