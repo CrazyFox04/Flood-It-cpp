@@ -33,7 +33,7 @@ void Game::recursive_mark(int x, int y) {
 }
 
 Game::Game(Player player) : Game(
-    GameSettings(DEFAULT_BOARD_HEIGHT, DEFAULT_BOARD_WIDTH, DEFAULT_BOARD_HEIGHT * DEFAULT_BOARD_WIDTH), player) {
+    GameSettings(Board::DEFAULT_HEIGHT, Board::DEFAULT_WIDTH, Board::DEFAULT_HEIGHT * Board::DEFAULT_WIDTH), player) {
 }
 
 Game::Game() : Game(Player()) {
@@ -96,4 +96,13 @@ void Game::removeObserver(Observer* observer) {
 
 int Game::get_play_count() const {
     return status.play_count;
+}
+
+bool Game::are_game_settings_valid(const GameSettings&settings) {
+    return Board::is_board_size_valid(settings.board_height, settings.board_width) &&
+           is_number_of_color_valid(settings.number_color);
+}
+
+bool Game::is_number_of_color_valid(const int number_of_color) {
+    return number_of_color >= MIN_NUMBER_OF_COLOR && number_of_color <= MAX_NUMBER_OF_COLOR;
 }

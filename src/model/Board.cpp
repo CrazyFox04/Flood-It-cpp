@@ -69,8 +69,11 @@ void Board::change_color(int color) {
 }
 
 void Board::reset_mark() {
-     for (auto& markList : mark) {
-         std::fill(markList.begin(), markList.end(), false);
+    for (auto&markList: mark) {
+        std::fill(markList.begin(), markList.end(), false);
     }
 }
 
+bool Board::is_board_size_valid(int height, int width) {
+    return height >= MIN_HEIGHT && height <= MAX_HEIGHT && width >= MIN_WIDTH && width <= MAX_WIDTH;
+}

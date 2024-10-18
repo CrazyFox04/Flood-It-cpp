@@ -19,8 +19,8 @@ class Game : public GameController {
     void recursive_mark(int x, int y);
 
 public :
-    static constexpr int DEFAULT_BOARD_WIDTH = 10;
-    static constexpr int DEFAULT_BOARD_HEIGHT = 10;
+    static constexpr int MIN_NUMBER_OF_COLOR = 2;
+    static constexpr int MAX_NUMBER_OF_COLOR = 20;
 
     Game();
 
@@ -45,6 +45,10 @@ public :
     void notifyObservers() override;
 
     int get_play_count() const;
+
+    static bool are_game_settings_valid(const GameSettings&settings);
+
+    static bool is_number_of_color_valid(int number_of_color);
 };
 
 #endif //GAME_HPP

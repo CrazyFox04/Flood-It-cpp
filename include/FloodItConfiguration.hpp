@@ -44,6 +44,10 @@ class FloodItConfiguration : public QWidget {
 
     void closeWidget();
 
+    void show_invalid_settings_message();
+
+    void save_game_settings();
+
 public:
     FloodItConfiguration(GameSettings* settings);
 

@@ -2,7 +2,10 @@
 // Created by Enzo Renard on 21/09/2024.
 //
 #include "FloodItConfiguration.hpp"
+
+#include <Game.hpp>
 #include <QCloseEvent>
+#include <QMessageBox>
 
 FloodItConfiguration::FloodItConfiguration(GameSettings* settings): wantToExit(true), layout_(new QVBoxLayout(this)),
                                                                     form_layout_(new QFormLayout()),
@@ -83,10 +86,11 @@ void FloodItConfiguration::closeEvent(QCloseEvent* event) {
 }
 
 void FloodItConfiguration::closeWidget() {
-    settings_->board_height = boardHeightLineEdit->text().toInt();
-    settings_->board_width = boardWidthLineEdit->text().toInt();
-    settings_->number_color = numberOfColorLineEdit->text().toInt();
-    settings_->player_name = playerNameLineEdit->text().toStdString();
+    save_game_settings();
+    if (!Game::are_game_settings_valid(*settings_)) {
+        show_invalid_settings_message();
+        return;
+    }
     wantToExit = false;
     close();
     deleteLater();
@@ -94,11 +98,22 @@ void FloodItConfiguration::closeWidget() {
 
 void FloodItConfiguration::keyPressEvent(QKeyEvent* event) {
     if (event->key() == Qt::Key_Return) {
-       closeWidget();
-    } else {
+        closeWidget();
+    }
+    else {
         QWidget::keyPressEvent(event);
     }
 }
 
+void FloodItConfiguration::show_invalid_settings_message() {
+    QMessageBox::information(this, tr("Flood-it configuration Error"), tr("Settings are invalid, please review them"));
+}
+
+void FloodItConfiguration::save_game_settings() {
+    settings_->board_height = boardHeightLineEdit->text().toInt();
+    settings_->board_width = boardWidthLineEdit->text().toInt();
+    settings_->number_color = numberOfColorLineEdit->text().toInt();
+    settings_->player_name = playerNameLineEdit->text().toStdString();
+}
 
 #include "moc_FloodItConfiguration.cpp"
