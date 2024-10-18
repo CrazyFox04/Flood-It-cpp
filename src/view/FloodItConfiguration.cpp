@@ -92,5 +92,13 @@ void FloodItConfiguration::closeWidget() {
     deleteLater();
 }
 
+void FloodItConfiguration::keyPressEvent(QKeyEvent* event) {
+    if (event->key() == Qt::Key_Return) {
+       closeWidget();
+    } else {
+        QWidget::keyPressEvent(event);
+    }
+}
+
 
 #include "moc_FloodItConfiguration.cpp"
