@@ -5,6 +5,8 @@
 #ifndef GAME_HPP
 #define GAME_HPP
 #include <GameController.hpp>
+#include <GameResults.hpp>
+
 #include "GameStatus.hpp"
 #include "Board.hpp"
 #include "Player.hpp"
@@ -15,6 +17,7 @@ class Game : public GameController {
     GameSettings settings;
     GameStatus status;
     std::vector<Observer *> observers;
+    GameResults results;
 
     void recursive_mark(int x, int y);
 

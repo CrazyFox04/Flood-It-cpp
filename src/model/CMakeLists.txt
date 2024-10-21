@@ -7,6 +7,8 @@ project(Flood-It-model)
 set(SOURCES
         Board.cpp
         Game.cpp
+        GameResults.cpp
+        GameResult.cpp
         Direction.cpp
         Player.cpp
 )
