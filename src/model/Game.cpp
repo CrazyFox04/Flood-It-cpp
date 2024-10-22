@@ -14,7 +14,8 @@
 
 Game::Game(GameSettings settings, Player player): board(settings.board_height, settings.board_width,
                                                         settings.number_color),
-                                                  settings(settings), status(), observers(), results(GameResults::deserialize("leaderboard.dat")) {
+                                                  settings(settings), status(), observers(),
+                                                  results(GameResults::deserialize("leaderboard.dat")) {
     recursive_mark(0, 0);
 }
 
@@ -110,3 +111,8 @@ bool Game::are_game_settings_valid(const GameSettings&settings) {
 bool Game::is_number_of_color_valid(const int number_of_color) {
     return number_of_color >= MIN_NUMBER_OF_COLOR && number_of_color <= MAX_NUMBER_OF_COLOR;
 }
+
+std::vector<GameResult> Game::get_best_result(int max_result) const {
+    return results.get_results_by_settings(settings, max_result);
+}
+

@@ -23,6 +23,7 @@ class FloodItGameOver : public QWidget {
     QHBoxLayout* buttonLayout;
     QLabel* gameOverLabel;
     QLabel* detailsLabel;
+    QLabel* leaderboardLabel;
     QPushButton* restartButton;
     QPushButton* exitButton;
 

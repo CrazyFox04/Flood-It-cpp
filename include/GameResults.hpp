@@ -11,7 +11,7 @@ class GameResults {
     std::vector<GameResult> results;
 
 public:
-    std::vector<GameResult> get_results_by_settings(const GameSettings&settings, int max_result);
+    std::vector<GameResult> get_results_by_settings(const GameSettings&settings, int max_result) const;
 
     void add_result(const GameResult&result);
 

@@ -5,17 +5,22 @@
 #include <iostream>
 #include "GameResults.hpp"
 
-std::vector<GameResult> GameResults::get_results_by_settings(const GameSettings&settings, int max_result) {
+std::vector<GameResult> GameResults::get_results_by_settings(const GameSettings& settings, int max_result) const {
     std::vector<GameResult> results;
-    std::ranges::generate_n(std::back_inserter(results),
-                            std::min(max_result, static_cast<int>(this->results.size())),
-                            [this, &settings, i = 0]() mutable {
-                                if (settings.board_height == this->results[i].settings.board_height &&
-                                    settings.board_width == this->results[i].settings.board_width) {
-                                    return this->results.at(i);
-                                }
-                                i++;
-                            });
+    int count = 0;
+
+    for (const auto& result : GameResults::sort(this->results)) {
+        if (result.settings.board_height == settings.board_height &&
+            result.settings.board_width == settings.board_width) {
+            results.push_back(result);
+            count++;
+            }
+
+        if (count >= max_result) {
+            break;
+        }
+    }
+
     return results;
 }
 

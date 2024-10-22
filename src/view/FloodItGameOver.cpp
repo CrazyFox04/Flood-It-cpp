@@ -10,6 +10,7 @@ FloodItGameOver::FloodItGameOver(std::shared_ptr<GameController> game): controll
                                                                         buttonLayout(new QHBoxLayout()),
                                                                         gameOverLabel(new QLabel(this)),
                                                                         detailsLabel(new QLabel(this)),
+                                                                        leaderboardLabel(new QLabel(this)),
                                                                         restartButton(new QPushButton("Restart", this)),
                                                                         exitButton(new QPushButton("Exit", this)) {
     configureWindow();
@@ -20,7 +21,7 @@ FloodItGameOver::FloodItGameOver(std::shared_ptr<GameController> game): controll
 
 void FloodItGameOver::configureWindow() {
     setWindowTitle("Flood-It End Of Game");
-    setFixedSize(500, 300);
+    setFixedSize(500, 400);
 }
 
 void FloodItGameOver::createItems() {
@@ -29,6 +30,9 @@ void FloodItGameOver::createItems() {
 
     detailsLabel->setAlignment(Qt::AlignCenter);
     mainLayout->addWidget(detailsLabel);
+
+    leaderboardLabel->setAlignment(Qt::AlignCenter);
+    mainLayout->addWidget(leaderboardLabel);
 
     buttonLayout->addWidget(restartButton);
     buttonLayout->addWidget(exitButton);
@@ -44,6 +48,13 @@ void FloodItGameOver::createItems() {
 void FloodItGameOver::updateItems() {
     gameOverLabel->setText("Game is finished !");
     detailsLabel->setText("You've finished the game in " + QString::number(controller_->get_play_count()) + " moves !");
+
+    QString leaderboardText = "Leaderboard:\n";
+    auto leaderboard = controller_->get_best_result(5);
+    for (const auto& score : leaderboard) {
+        leaderboardText += QString::fromStdString(score.settings.player_name) + ": " + QString::number(score.status.play_count) + " moves\n";
+    }
+    leaderboardLabel->setText(leaderboardText);
 }
 
 void FloodItGameOver::restartGame() {

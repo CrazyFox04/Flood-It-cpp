@@ -52,6 +52,8 @@ public :
     static bool are_game_settings_valid(const GameSettings&settings);
 
     static bool is_number_of_color_valid(int number_of_color);
+
+    std::vector<GameResult> get_best_result(int max_result) const override;
 };
 
 #endif //GAME_HPP

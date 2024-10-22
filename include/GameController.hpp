@@ -5,6 +5,8 @@
 #ifndef GAMECONTROLLER_HPP
 #define GAMECONTROLLER_HPP
 #include <Board.hpp>
+#include <GameResult.hpp>
+
 #include "Observable.hpp"
 
 class GameController : public Observable {
@@ -26,5 +28,7 @@ public:
     virtual bool can_play_at(int x, int y) const = 0;
 
     virtual int get_play_count() const = 0;
+
+    virtual std::vector<GameResult> get_best_result(int max_result) const = 0;
 };
 #endif //GAMECONTROLLER_HPP
