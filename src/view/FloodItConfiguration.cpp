@@ -52,6 +52,7 @@ void FloodItConfiguration::setValues() {
     boardHeightLineEdit->setText(QString::number(settings_->board_height));
     boardWidthLineEdit->setText(QString::number(settings_->board_width));
     numberOfColorLineEdit->setText(QString::number(settings_->number_color));
+    playerNameLineEdit->setText(QString::fromStdString(settings_->player_name));
 }
 
 void FloodItConfiguration::createButtons() {
