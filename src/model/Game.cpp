@@ -15,7 +15,8 @@
 Game::Game(GameSettings settings, Player player): board(settings.board_height, settings.board_width,
                                                         settings.number_color),
                                                   settings(settings), status(), observers(),
-                                                  results(GameResults::deserialize("leaderboard.dat")) {
+                                                  results() {
+    results.loadFromFile("leaderboard.dat");
     recursive_mark(0, 0);
 }
 
@@ -68,7 +69,7 @@ void Game::play_at(int x, int y) {
     ++status.play_count;
     if (isFinished()) {
         results.add_result({settings, status});
-        results.serialize("leaderboard.dat");
+        results.saveToFile("leaderboard.dat");
     }
     notifyObservers();
 }

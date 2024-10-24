@@ -4,21 +4,23 @@
 
 #ifndef GAMERESULTS_HPP
 #define GAMERESULTS_HPP
-#include <GameResult.hpp>
 #include <vector>
+#include "GameResult.hpp"
+#include "GameSettings.hpp"
 
 class GameResults {
-    std::vector<GameResult> results;
-
 public:
     std::vector<GameResult> get_results_by_settings(const GameSettings&settings, int max_result) const;
 
     void add_result(const GameResult&result);
 
-    void serialize(const std::string&filename);
+    void saveToFile(const std::string&filename) const;
 
-    static std::vector<GameResult> sort(std::vector<GameResult>);
+    void loadFromFile(const std::string&filename);
 
-    static GameResults deserialize(const std::string&filename);
+private:
+    std::vector<GameResult> results;
+
+    static std::vector<GameResult> sort(std::vector<GameResult> results);
 };
 #endif //GAMERESULTS_HPP
