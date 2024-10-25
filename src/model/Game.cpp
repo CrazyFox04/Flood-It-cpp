@@ -1,6 +1,7 @@
 //
 // Created by Enzo Renard on 20/09/2024.
 //
+#include <algorithm>
 #include "Game.hpp"
 #include "Observable.hpp"
 #include "Observer.hpp"
@@ -16,7 +17,12 @@ Game::Game(GameSettings settings, Player player): board(settings.board_height, s
                                                         settings.number_color),
                                                   settings(settings), status(), observers(),
                                                   results() {
-    results.loadFromFile("leaderboard.dat");
+    try {
+        results.loadFromFile("leaderboard.dat");
+    }
+    catch (std::runtime_error) {
+        std::cerr << "Leaderboard not found or could not be load. It just won't be used" << std::endl;
+    }
     recursive_mark(0, 0);
 }
 
@@ -116,4 +122,3 @@ bool Game::is_number_of_color_valid(const int number_of_color) {
 std::vector<GameResult> Game::get_best_result(int max_result) const {
     return results.get_results_by_settings(settings, max_result);
 }
-
