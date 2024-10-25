@@ -12,3 +12,4 @@ set(CMAKE_CXX_FLAGS "-Wall -pedantic-errors")
 
 # Include subdirectories for source and test
 add_subdirectory(src)
+add_subdirectory(documentation)
