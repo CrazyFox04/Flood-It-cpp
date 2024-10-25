@@ -30,7 +30,7 @@ void GameGui::run(int argc, char** argv) {
 }
 
 void GameGui::configureEndOfConfiguration() {
-    QObject::connect(flood_it_configuration, &QObject::destroyed, [=]() mutable {
+    QObject::connect(flood_it_configuration, &QObject::destroyed, [this]() mutable {
         if (wantToExit) {
             QApplication::quit();
         }
@@ -42,13 +42,13 @@ void GameGui::configureEndOfConfiguration() {
             configureEndOfView();
         }
     });
-    QObject::connect(flood_it_configuration, &FloodItConfiguration::exitGame, [=]() mutable {
+    QObject::connect(flood_it_configuration, &FloodItConfiguration::exitGame, [this]() mutable {
         wantToExit = true;
     });
 }
 
 void GameGui::configureEndOfView() {
-    QObject::connect(flood_it_view, &QObject::destroyed, [=]() mutable {
+    QObject::connect(flood_it_view, &QObject::destroyed, [this]() mutable {
         flood_it_game_over = new FloodItGameOver(controller);
         flood_it_game_over->show();
         configureEndOfGameOver();
@@ -56,7 +56,7 @@ void GameGui::configureEndOfView() {
 }
 
 void GameGui::configureEndOfGameOver() {
-    QObject::connect(flood_it_game_over, &QObject::destroyed, [=]() mutable {
+    QObject::connect(flood_it_game_over, &QObject::destroyed, [this]() mutable {
         if (wantToExit) {
             QApplication::quit();
         } else {
@@ -65,7 +65,7 @@ void GameGui::configureEndOfGameOver() {
             configureEndOfConfiguration();
         }
     });
-    QObject::connect(flood_it_game_over, &FloodItGameOver::exitGame, [=]() mutable {
+    QObject::connect(flood_it_game_over, &FloodItGameOver::exitGame, [this]() mutable {
         wantToExit = true;
     });
 }
