@@ -20,7 +20,7 @@ Game::Game(GameSettings settings, Player player): board(settings.board_height, s
     try {
         results.loadFromFile("leaderboard.dat");
     }
-    catch (std::runtime_error) {
+    catch (std::runtime_error& e) {
         std::cerr << "Leaderboard not found or could not be load. It just won't be used" << std::endl;
     }
     recursive_mark(0, 0);
