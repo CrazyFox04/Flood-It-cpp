@@ -13,7 +13,7 @@ add_executable(${PROJECT_NAME} main.cpp)
 
 target_link_libraries(
         ${PROJECT_NAME} PRIVATE
-        Flood-It-model
         Flood-It-view
+        Flood-It-model
         Flood-It-utils
 )
