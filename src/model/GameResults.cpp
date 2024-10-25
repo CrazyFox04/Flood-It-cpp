@@ -1,5 +1,5 @@
 #include "GameResults.hpp"
-
+#include <algorithm>
 #include <unordered_map>
 
 #include "FileManager.hpp"
