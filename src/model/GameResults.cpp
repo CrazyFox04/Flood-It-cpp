@@ -6,7 +6,7 @@
 
 std::vector<GameResult> GameResults::get_results_by_settings(GameSettings settings, int max_results) const {
     std::vector<GameResult> best_results = get_results_by_settings(settings);
-    if (best_results.size() > max_results) {
+    if (static_cast<int>(best_results.size()) > max_results) {
         best_results.resize(max_results);
     }
     return best_results;
