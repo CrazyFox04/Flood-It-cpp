@@ -78,9 +78,8 @@ After building the project, you can run the main executable by running the follo
 
 ```bash
 cd src/
-./tetris
+./Flood-It
 ```
-If you want to run the console view instead of the QT view, you can specify the -c option: `./tetris -c`
 
 ## Documentation
 
